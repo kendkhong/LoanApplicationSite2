@@ -11,12 +11,12 @@ namespace LoanApplicationSiteCore.Tests.Steps
     [Binding]
     public class LoanApplicationSteps
     {
-        private readonly IPage user;
+        private readonly IPage page;
         private readonly LoanApplicationPage loanApplicationPage;
 
         public LoanApplicationSteps(Hooks.Hooks hooks, LoanApplicationPage loanApplicationPage)
         {
-            this.user = hooks.User;
+            this.page = hooks.Page;
             this.loanApplicationPage = loanApplicationPage;
         }
 
@@ -24,7 +24,7 @@ namespace LoanApplicationSiteCore.Tests.Steps
         public async Task GivenIAmNonTheLoanApplicationScreen()
         {
             // Go to the Loan Application screen
-            await user.GotoAsync("https://localhost:7115/Home/StartLoanApplication");
+            await page.GotoAsync("https://localhost:7115/Home/StartLoanApplication");
 
             // Assert the page
             await loanApplicationPage.AssertPageContent();

@@ -8,12 +8,12 @@ namespace LoanApplicationSiteCore.Tests.Pages
 {
     public class ApplicationConfirmationPage
     {
-        private readonly IPage user;
+        private readonly IPage page;
 
-        private ILocator _firstName => user.Locator("xpath=/html/body/div[2]/div/p[1]/span");
+        private ILocator _firstName => page.Locator("xpath=/html/body/div[2]/div/p[1]/span");
         public ApplicationConfirmationPage(Hooks.Hooks hooks)
         {
-            this.user = hooks.User;
+            this.page = hooks.Page;
         }
 
         public ILocator FirstName => _firstName;

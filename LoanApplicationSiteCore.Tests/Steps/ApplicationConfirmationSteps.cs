@@ -7,12 +7,12 @@ namespace LoanApplicationSiteCore.Tests.Steps
     [Binding]
     public class ApplicationConfirmationSteps
     {
-        private readonly IPage user;
+        private readonly IPage page;
         private readonly ApplicationConfirmationPage applicationConfirmationPage;
 
         public ApplicationConfirmationSteps(Hooks.Hooks hooks, ApplicationConfirmationPage applicationConfirmationPage) {
 
-            this.user = hooks.User; 
+            this.page = hooks.Page; 
             this.applicationConfirmationPage = applicationConfirmationPage;
         }
 
