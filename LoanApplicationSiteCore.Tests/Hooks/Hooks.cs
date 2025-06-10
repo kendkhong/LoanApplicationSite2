@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using LoanApplicationSiteCore.Tests.Configs;
+using Microsoft.Playwright;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -7,33 +8,30 @@ namespace LoanApplicationSiteCore.Tests.Hooks
     [Binding]
     public class Hooks
     {
-        public IPage Page { get; private set; } = null; // We will call this property in the tests
-        public IBrowser browser;
+        private readonly ScenarioContext _scenarioContext;
+
+        public Hooks(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
         [BeforeScenario] // Notice how we're doing these steps before each scenario
-        public async Task RegisterSingleInstancePractitioner()
+        public async Task BeforeScenario()
         {
-            // Initialize Playwright 
-            var playwright = await Playwright.CreateAsync();
-
-            // Initialize a browser - 'Chromium' can be changed to 'Firefox' or 'Webkit'
-            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions {
-                    
-                    Headless = false // Use this option to be able to see test running
-                }
-            );
-
-            // Setup a browser context
-            var context1 = await browser.NewContextAsync();
-
-            // Initialize a page on the browser context
-            Page = await context1.NewPageAsync();
+            var session = new PlaywrightSession();
+            await session.StartAsync(browserType: "chromium", headless: false);
+            _scenarioContext["PlaywrightSession"] = session;
+            Console.WriteLine("Playwright session started successfully.");
         }
 
         [AfterScenario]
-        public void DisposeWebDriver()
+        public async Task AfterScenario()
         {
-            browser.DisposeAsync();
+            if (_scenarioContext.TryGetValue("PlaywrightSession", out PlaywrightSession session))
+            {
+                // Clean up (dispose of the browser, context, and Playwright)
+                await session.StopAsync();
+            }
         }
 
     }

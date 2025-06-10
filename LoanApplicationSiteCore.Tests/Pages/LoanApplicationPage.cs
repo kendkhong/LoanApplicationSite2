@@ -1,7 +1,7 @@
 ﻿using Microsoft.Playwright;
 using FluentAssertions;
-using System.Threading.Tasks;
-using LoanApplicationSiteCore.Tests.Hooks;
+using TechTalk.SpecFlow;
+using LoanApplicationSiteCore.Tests.Configs;
 
 namespace LoanApplicationSiteCore.Tests.Pages
 {
@@ -18,15 +18,26 @@ namespace LoanApplicationSiteCore.Tests.Pages
         private ILocator TermsAcceptance => page.Locator("input[id='TermsAcceptance']");
         private ILocator SubmitButton => page.Locator(".btn.btn-primary");
 
-        public LoanApplicationPage(Hooks.Hooks hooks)
+        public LoanApplicationPage(ScenarioContext scenarioContext)
         {
-            this.page = hooks.Page;
+
+            var session = scenarioContext.Get<PlaywrightSession>("PlaywrightSession");
+            this.page = session.Page;
         }
 
+        public async Task goTo()
+        {
+            // Expose BaseUrl from the configuration file
+            var settings = ConfigLoader.GetPlaywrightSettings();
+            Console.WriteLine(settings?.BaseUrl);
+            await this.page.GotoAsync($"{settings?.BaseUrl}/Home/StartLoanApplication");
+        } 
         public async Task AssertPageContent()
         {
+            // Expose BaseUrl from the configuration file
+            var settings = ConfigLoader.GetPlaywrightSettings();
             // Assert that the correct URL has been reached
-            page.Url.Should().Be("https://localhost:7115/Home/StartLoanApplication");
+            page.Url.Should().Be($"{settings?.BaseUrl}/Home/StartLoanApplication");
 
             // Assert that the submit application button is visible
             var submitBtnVisibility = await SubmitButton.IsVisibleAsync();
@@ -52,7 +63,6 @@ namespace LoanApplicationSiteCore.Tests.Pages
 
         public async Task AcceptTermsAndConditions()
         {
-
             await TermsAcceptance.CheckAsync();
         }
 

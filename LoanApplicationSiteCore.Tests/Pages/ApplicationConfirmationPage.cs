@@ -1,7 +1,8 @@
 ﻿
 using FluentAssertions;
+using LoanApplicationSiteCore.Tests.Configs;
 using Microsoft.Playwright;
-
+using TechTalk.SpecFlow;
 
 
 namespace LoanApplicationSiteCore.Tests.Pages
@@ -11,9 +12,10 @@ namespace LoanApplicationSiteCore.Tests.Pages
         private readonly IPage page;
 
         private ILocator _firstName => page.Locator("xpath=/html/body/div[2]/div/p[1]/span");
-        public ApplicationConfirmationPage(Hooks.Hooks hooks)
+        public ApplicationConfirmationPage(ScenarioContext senarioContext)
         {
-            this.page = hooks.Page;
+            var session = senarioContext.Get<PlaywrightSession>("PlaywrightSession");
+            this.page = session.Page;
         }
 
         public ILocator FirstName => _firstName;

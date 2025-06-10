@@ -1,4 +1,5 @@
-﻿using LoanApplicationSiteCore.Tests.Pages;
+﻿using LoanApplicationSiteCore.Tests.Configs;
+using LoanApplicationSiteCore.Tests.Pages;
 using Microsoft.Playwright;
 using TechTalk.SpecFlow;
 
@@ -10,9 +11,9 @@ namespace LoanApplicationSiteCore.Tests.Steps
         private readonly IPage page;
         private readonly ApplicationConfirmationPage applicationConfirmationPage;
 
-        public ApplicationConfirmationSteps(Hooks.Hooks hooks, ApplicationConfirmationPage applicationConfirmationPage) {
+        public ApplicationConfirmationSteps(PlaywrightSession session, ApplicationConfirmationPage applicationConfirmationPage) {
 
-            this.page = hooks.Page; 
+            this.page = session.Page; 
             this.applicationConfirmationPage = applicationConfirmationPage;
         }
 
