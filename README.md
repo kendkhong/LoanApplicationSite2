@@ -26,12 +26,16 @@ The goal of the project is basically automated the of applying for a loan on a f
     ```bash
     git clone https://github.com/kendkhong/LoanApplicationSite2
     ```
-2. Restore dependencies from NuGet Package Manager
-       1. Click on Tools from Menu > NuGet Package Manager > Package Manager Console
-       2. Type the following command to restore dependencies:
-            ```bash
-            Update-Package -reinstall
-            ```
+
+2. Open the project in Visual Studio
+
+3. Open the NuGet Package Manager Console in Visual Studio to restore the dependencies
+
+      1. Click on Tools from Menu > NuGet Package Manager > Package Manager Console
+      2. Type the following command to restore dependencies:
+           ```bash
+           Update-Package -reinstall
+           ```
 ## Usage
 
 ### Running the Project
