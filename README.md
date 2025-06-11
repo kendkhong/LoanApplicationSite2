@@ -14,46 +14,34 @@ The goal of the project is basically automated the of applying for a loan on a f
 
 ### Prerequisites
 
-    - Node.js (v20 or higher)
-    - Mocha installed 
+    - Microsoft Visual Studio 2022 or later
+    - .NET 8.0 SDK installed 
     - Playwright installed
     - Web browser installed
-    - Cucumber installed
+    - Specflow installed
+    - NUnit installed
     - Other necessary tools or dependencies
 
 ### Steps to install
     
 1. Clone the repository
     ```bash
-    git clone https://github.com/kendkhong/FlightSearchAutomation.git
+    git clone https://github.com/kendkhong/LoanApplicationSite2
     ```
-2. Navigate into the project folder:
-    ```bash
-    cd FlightSearchAutomation
+2. Restore dependencies
+    ```NuGet Package Manager
+       Click on Tools > NuGet Package Manager > Package Manager Console
+        1. Type the following command to restore dependencies:
+            1. ```bash
+                1.  Update-Package -reinstall
+    
+            ```
     ```
-3. Install dependencies
-    ```bash
-    npm install
-    npm install @playwright/test --save-dev
-    npx playwright install
-    npm install @cucumber/cucumber
-    ```
-
 ## Usage
 
 ### Running the Project
 
-#### Mocha Project with Page Object Model
 1. To run tests:
-    ```bash
-    npx playwright test tests/FlightSearch.spec.js --headed
-    ```
+    Go to the Test Explorer in Visual Studio and run all tests or select specific tests to run.
 
-
-#### Cucumber project with Page Object Model
-
-1. To run tests:
-    ```bash
-    npx cucumber-js --exit
-    ```
 
