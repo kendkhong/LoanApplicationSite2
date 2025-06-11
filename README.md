@@ -1,7 +1,5 @@
 # LoanApplicationSite
-This project demonstrates a Web Application UI automated test using Playwright, Specflow, .NET 8.0, NUnit framework. It includes using (Behavior Driven Development) and POM (Page Object Model) concepts. The project is designed to automate the process of applying for a loan on a fictional loan application website.
-
-My creating a readable and maintainable code approach has helped me to pick these technologies mentioned above for this project. 
+This project demonstrates a Web Application UI automated test using Playwright, Specflow, .NET 8.0, NUnit framework. It includes using (Behavior Driven Development) and POM (Page Object Model) concepts. The project is designed to automate the process of applying for a loan on a fictional loan application website. My creating a readable and maintainable code approach has helped me to pick these technologies mentioned above for this project. 
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -28,15 +26,12 @@ The goal of the project is basically automated the of applying for a loan on a f
     ```bash
     git clone https://github.com/kendkhong/LoanApplicationSite2
     ```
-2. Restore dependencies
-    ```NuGet Package Manager
-       Click on Tools > NuGet Package Manager > Package Manager Console
-        1. Type the following command to restore dependencies:
-            1. ```bash
-                1.  Update-Package -reinstall
-    
+2. Restore dependencies from NuGet Package Manager
+       1. Click on Tools from Menu > NuGet Package Manager > Package Manager Console
+       2. Type the following command to restore dependencies:
+            ```bash
+            Update-Package -reinstall
             ```
-    ```
 ## Usage
 
 ### Running the Project
