@@ -1,15 +1,15 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
+using LoanApplicationSiteCore.Tests.Configs;
 using Microsoft.Playwright;
 
-namespace LoanApplicationSiteCore.Tests.Configs
+namespace LoanApplicationSiteCore.Tests.Support
 {
     public class PlaywrightSession
     {
-        public IPlaywright Playwright { get; private set; }
-        public IBrowser Browser { get; private set; }
-        public IBrowserContext Context { get; private set; } 
-        public IPage Page { get; private set; } // We will call this property in the tests
+        public IPlaywright? Playwright { get; private set; }
+        public IBrowser? Browser { get; private set; }
+        public IBrowserContext? Context { get; private set; } 
+        public IPage? Page { get; private set; } // We will call this property in the tests
 
         public async Task StartAsync(string browserType = "chromium", bool headless = true)
         {
@@ -19,7 +19,7 @@ namespace LoanApplicationSiteCore.Tests.Configs
             // Load Playwright setting
             var settings = ConfigLoader.GetPlaywrightSettings();
             // Initialize a browser - 'Chromium' can be changed to 'Firefox' or 'Webkit'
-            Browser = browserType switch
+            Browser = browserType.ToLower() switch
             {
                 "firefox" => await Playwright.Firefox.LaunchAsync(new() { Headless = settings?.Headless }),
                 "webkit" => await Playwright.Webkit.LaunchAsync(new() { Headless = settings?.Headless }),
@@ -31,9 +31,7 @@ namespace LoanApplicationSiteCore.Tests.Configs
 
             // Initialize a page on the browser context
             Page = await Context.NewPageAsync();
-
         }
-
         public async Task StopAsync()
         {
             if (Browser != null)

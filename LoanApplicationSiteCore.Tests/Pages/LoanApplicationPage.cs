@@ -2,6 +2,7 @@
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using LoanApplicationSiteCore.Tests.Configs;
+using LoanApplicationSiteCore.Tests.Support;
 
 namespace LoanApplicationSiteCore.Tests.Pages
 {
@@ -25,7 +26,7 @@ namespace LoanApplicationSiteCore.Tests.Pages
             this.page = session.Page;
         }
 
-        public async Task goTo()
+        public async Task GoTo()
         {
             // Expose BaseUrl from the configuration file
             var settings = ConfigLoader.GetPlaywrightSettings();

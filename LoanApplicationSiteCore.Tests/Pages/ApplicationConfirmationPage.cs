@@ -1,6 +1,6 @@
 ﻿
 using FluentAssertions;
-using LoanApplicationSiteCore.Tests.Configs;
+using LoanApplicationSiteCore.Tests.Support;
 using Microsoft.Playwright;
 using TechTalk.SpecFlow;
 

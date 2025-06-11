@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Playwright;
-using System.Threading.Tasks;
+
 
 namespace LoanApplicationSiteCore.Tests.Configs
 {

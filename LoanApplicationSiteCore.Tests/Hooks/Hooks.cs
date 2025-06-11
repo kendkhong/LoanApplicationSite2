@@ -1,4 +1,4 @@
-﻿using LoanApplicationSiteCore.Tests.Configs;
+﻿using LoanApplicationSiteCore.Tests.Support;
 using Microsoft.Playwright;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -15,24 +15,24 @@ namespace LoanApplicationSiteCore.Tests.Hooks
             _scenarioContext = scenarioContext;
         }
 
-        [BeforeScenario] // Notice how we're doing these steps before each scenario
-        public async Task BeforeScenario()
+        [BeforeScenario(Order = 0)] // Notice how we're doing these steps before each scenario
+        public async Task StartPlaywright()
         {
             var session = new PlaywrightSession();
+            // Start the Playwright session before store session in the ScenarioContext
             await session.StartAsync(browserType: "chromium", headless: false);
             _scenarioContext["PlaywrightSession"] = session;
             Console.WriteLine("Playwright session started successfully.");
         }
 
-        [AfterScenario]
-        public async Task AfterScenario()
+        [AfterScenario(Order = 999)]
+        public async Task DisposePlaywright()
         {
             if (_scenarioContext.TryGetValue("PlaywrightSession", out PlaywrightSession session))
             {
-                // Clean up (dispose of the browser, context, and Playwright)
+                // Clean up (dispose of the Browser, Context, and Playwright)
                 await session.StopAsync();
             }
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using LoanApplicationSiteCore.Tests.Configs;
-using LoanApplicationSiteCore.Tests.Pages;
+﻿using LoanApplicationSiteCore.Tests.Pages;
 using Microsoft.Playwright;
 using TechTalk.SpecFlow;
 
@@ -8,19 +7,19 @@ namespace LoanApplicationSiteCore.Tests.Steps
     [Binding]
     public class ApplicationConfirmationSteps
     {
-        private readonly IPage page;
-        private readonly ApplicationConfirmationPage applicationConfirmationPage;
+        private readonly ApplicationConfirmationPage _applicationConfirmationPage;
+        private readonly POManager _poManager;
 
-        public ApplicationConfirmationSteps(PlaywrightSession session, ApplicationConfirmationPage applicationConfirmationPage) {
+        public ApplicationConfirmationSteps(ScenarioContext scenarioContext) {
 
-            this.page = session.Page; 
-            this.applicationConfirmationPage = applicationConfirmationPage;
+            this._poManager = new POManager(scenarioContext);
+            this._applicationConfirmationPage = _poManager.ApplicationConfirmationPage;
         }
 
         [Then(@"I should see the application complete confirmation for Sarah")]
         public async Task ThenIShouldSeeTheApplicationCompleteConfirmationForSarah()
         {
-            await Assertions.Expect(applicationConfirmationPage.FirstName).ToContainTextAsync("Sarah");
+            await Assertions.Expect(_applicationConfirmationPage.FirstName).ToContainTextAsync("Sarah");
         }
     }
 }

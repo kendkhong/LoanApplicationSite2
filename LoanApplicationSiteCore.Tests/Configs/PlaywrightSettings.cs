@@ -12,6 +12,5 @@ namespace LoanApplicationSiteCore.Tests.Configs
         public string Browser { get; set; } = "firefox";
         public bool Headless { get; set; } = false;
         public string BaseUrl { get; set; } = "";
-
     }
 }
