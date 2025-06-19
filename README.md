@@ -43,6 +43,6 @@ The goal of the project is to automate testing the process of applying for a loa
 1. Run the "LoanApplicationSiteCore" project in Visual Studio without Debugging by pressing `Ctrl + F5` or clicking on the "Start Without Debugging" button. This will launch the web application in your default web browser.
 2. To run tests:
 
-    Go to the "Test Explorer" pannel in Visual Studio and run all tests or select specific tests to run.
+    Go to the "Test Explorer" panel in Visual Studio and run all tests or select specific tests to run.
 
 
